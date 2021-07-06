@@ -21,7 +21,7 @@ function RenderCampsite({ campsite }) {
     );
 }
 
-function RenderComments({ comments }) {
+function RenderComments({ comments, addComment, campsiteId }) {
     if (comments) {
         return (
             <div className="col-md-5 m-1">
@@ -42,7 +42,7 @@ function RenderComments({ comments }) {
                         </div>
                     );
                 })}{" "}
-                <CommentForm />
+                <CommentForm campsiteId={campsiteId} addComment={addComment} />
             </div>
         );
     }
@@ -66,7 +66,11 @@ function CampsiteInfo(props) {
                 <div className="container">
                     <div className="row">
                         <RenderCampsite campsite={props.campsite} />{" "}
-                        <RenderComments comments={props.comments} />{" "}
+                        <RenderComments
+                            comments={props.comments}
+                            addComment={props.addComment}
+                            campsiteId={props.campsiteId}
+                        />{" "}
                     </div>{" "}
                 </div>
             </div>
@@ -99,10 +103,9 @@ class CommentForm extends Component {
         });
     }
 
-    handleSubmit(value) {
-        alert("Current state is: " + JSON.stringify(value));
-
+    handleSubmit(values) {
         this.toggleModal();
+        this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
     }
 
 
@@ -113,7 +116,7 @@ class CommentForm extends Component {
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}> Submit Comment </ModalHeader>
                     <ModalBody>
-                        <LocalForm onSubmit={value => this.handleSubmit(value)}>
+                        <LocalForm onSubmit={values => this.handleSubmit(values)}>
                             <div className="form-group">
                                 <Label htmlFor="rating">Rating</Label>
                                 <Control.select model=".rating" id="rating" name="rating" className="form-control">
