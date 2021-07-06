@@ -69,7 +69,7 @@ function CampsiteInfo(props) {
                         <RenderComments
                             comments={props.comments}
                             addComment={props.addComment}
-                            campsiteId={props.campsiteId}
+                            campsiteId={props.campsite.id}
                         />{" "}
                     </div>{" "}
                 </div>
