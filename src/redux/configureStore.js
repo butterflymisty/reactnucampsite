@@ -7,7 +7,6 @@ import { Comments } from './comments';
 import { Partners } from './partners';
 import { Promotions } from './promotions';
 import { InitialFeedback } from './forms';
-import { createIssueFromTsDiagnostic } from 'fork-ts-checker-webpack-plugin/lib/issue';
 
 export const ConfigureStore = () => {
     const store = createStore(
