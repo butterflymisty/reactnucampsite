@@ -15,7 +15,8 @@ function RenderCampsite({ campsite }) {
     return (
         <div className="col-md-5 m-1">
             <FadeTransform
-                IntltransformProps={{
+                in
+                transformProps={{
                     exitTransform: 'scale(0.5) translateY(-50%)'
                 }}>
                 <Card>
